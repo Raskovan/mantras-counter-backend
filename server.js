@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 const nconf = require('nconf')
 const bodyParser = require('body-parser')
+const cors = require('cors')
 
 nconf
   .argv()
@@ -9,6 +10,7 @@ nconf
   .file({ file: './config.json' })
 
 app.use(bodyParser.json())
+app.use(cors())
 
 app.get('/_health', function(req, res) {
   res.json('Karmapachenno')
