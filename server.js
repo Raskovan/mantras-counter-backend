@@ -2,12 +2,14 @@ const express = require('express')
 const app = express()
 const nconf = require('nconf')
 const bodyParser = require('body-parser')
+const cors = require('cors')
 
 nconf
   .argv()
   .env('__')
   .file({ file: './config.json' })
 
+app.use(cors())
 app.use(bodyParser.json())
 
 app.get('/_health', function(req, res) {
